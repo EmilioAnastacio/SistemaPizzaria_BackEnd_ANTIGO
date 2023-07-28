@@ -1,0 +1,6 @@
+Nome do Pedido: pizza
+Index do Pedido: 0
+Nome do CLiente: emilio
+Endereço do Cliente: 
+- general
+- 3030
