@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "usuario", schema = "public")
 public class Usuario extends AbstractEntity{
@@ -29,8 +31,23 @@ public class Usuario extends AbstractEntity{
     private String senha;
 
     @Getter@Setter
+    @OneToMany
+    private List<Endereco> enderecos;
+
+    @Getter@Setter
     @Enumerated(EnumType.STRING)
     @Column(name ="cargo", length =20, nullable =false)
     private Cargo cargo;
 
+    public Usuario(){}
+
+    public Usuario(String nome, String cpf, String telefone, String email, String senha, List<Endereco> enderecos, Cargo cargo) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.email = email;
+        this.senha = senha;
+        this.enderecos = enderecos;
+        this.cargo = cargo;
+    }
 }
