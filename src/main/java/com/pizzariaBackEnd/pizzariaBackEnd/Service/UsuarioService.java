@@ -44,6 +44,17 @@ public class UsuarioService {
         this.usuarioRepository.save(toUsuario(usuarioDTO));
     }
 
+    @Transactional(rollbackFor = Exception.class)
+    public void deletar(final Long id){
+
+        final Usuario usuarioBanco = this.usuarioRepository.findById(id).orElse(null);
+
+        Assert.isTrue(usuarioBanco != null, "Registro não encontrado");
+
+        this.usuarioRepository.delete(usuarioBanco);
+
+    }
+
     public List<UsuarioDTO> findAllUsuario(){
         List<Usuario> usuarioBanco = usuarioRepository.findAll();
         List<UsuarioDTO> usuarioDTOBanco = new ArrayList<>();
@@ -55,16 +66,6 @@ public class UsuarioService {
         return  usuarioDTOBanco;
     }
 
-    @Transactional(rollbackFor = Exception.class)
-    public void deletar(final Long id){
-
-        final Usuario usuarioBanco = this.usuarioRepository.findById(id).orElse(null);
-
-        Assert.isTrue(usuarioBanco != null, "Registro não encontrado");
-
-        this.usuarioRepository.delete(usuarioBanco);
-
-    }
 
     public Usuario toUsuario(UsuarioDTO usuarioDTO){
         Usuario usuario = new Usuario();
