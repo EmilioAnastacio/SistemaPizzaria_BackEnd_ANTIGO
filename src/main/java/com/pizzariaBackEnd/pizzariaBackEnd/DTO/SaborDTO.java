@@ -1,20 +1,26 @@
 package com.pizzariaBackEnd.pizzariaBackEnd.DTO;
 
+import com.pizzariaBackEnd.pizzariaBackEnd.Entity.Item;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 public class SaborDTO {
 
-    @Getter
-    @Setter
+    @Getter@Setter
     private Long id;
 
-    @Getter @Setter
+    @Getter@Setter
     private String nome;
 
-    public SaborDTO(Long id, String nome) {
+    @Getter@Setter
+    private List<Item> item;
+
+    public SaborDTO(Long id, String nome, List<Item> item) {
         this.id = id;
         this.nome = nome;
+        this.item = item;
     }
 
     public SaborDTO() {

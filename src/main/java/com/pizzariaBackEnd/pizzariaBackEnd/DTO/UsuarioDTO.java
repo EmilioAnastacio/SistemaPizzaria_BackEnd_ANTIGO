@@ -9,8 +9,8 @@ import java.util.List;
 
 public class UsuarioDTO {
 
-    @Getter@Setter
-    private Long id;
+   //@Getter@Setter
+    //private Long id;
 
     @Getter@Setter
     private String nome;
@@ -24,16 +24,21 @@ public class UsuarioDTO {
     @Getter@Setter
     private List<Endereco> enderecos;
 
+    @Getter@Setter
+    private Cargo cargo;
+
     public UsuarioDTO(){
 
     }
 
 
-    public UsuarioDTO(String nome, String cpf, String telefone,List<Endereco> enderecos) {
+    public UsuarioDTO(String nome, String cpf, String telefone,List<Endereco> enderecos, Cargo cargo) {
+        //this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
         this.enderecos = enderecos;
+        this.cargo = cargo;
 
     }
 }

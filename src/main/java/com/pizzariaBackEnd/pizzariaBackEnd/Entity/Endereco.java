@@ -1,17 +1,22 @@
 package com.pizzariaBackEnd.pizzariaBackEnd.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 
 @Entity
 @Table(name = "endereco", schema = "public")
-public class Endereco extends AbstractEntity{
+public class Endereco{
+
+    @Id
+    @Getter
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, unique = true)
+    private Long id;
 
     @Getter@Setter
+    @ManyToOne
     @JoinColumn(name = "idCliente", nullable = false)
     private Usuario idCliente;
 
@@ -34,5 +39,8 @@ public class Endereco extends AbstractEntity{
     @Getter@Setter
     @Column(name = "complemento", length = 100)
     private String complemento;
+
+    public Endereco() {
+    }
 
 }

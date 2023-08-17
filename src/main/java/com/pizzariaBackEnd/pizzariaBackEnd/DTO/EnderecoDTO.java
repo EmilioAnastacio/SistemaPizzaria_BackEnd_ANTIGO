@@ -1,12 +1,13 @@
 package com.pizzariaBackEnd.pizzariaBackEnd.DTO;
 
+import com.pizzariaBackEnd.pizzariaBackEnd.Entity.Usuario;
 import lombok.Getter;
 import lombok.Setter;
 
 public class EnderecoDTO {
 
-    @Getter@Setter
-    private Long idCliente;
+    //@Getter@Setter
+    //private Usuario idCliente;
 
     @Getter@Setter
     private String nomeRua;
@@ -23,12 +24,20 @@ public class EnderecoDTO {
     @Getter@Setter
     private String complemento;
 
-    public EnderecoDTO(Long idCliente, String nomeRua, String cep, String bairro, int numero, String complemento) {
-        this.idCliente = idCliente;
+    @Getter@Setter
+    private Usuario usuario;
+
+    public EnderecoDTO(){
+
+    }
+
+    public EnderecoDTO(String nomeRua, String cep, String bairro, int numero, String complemento, Usuario usuarioDTO) {
+        //this.idCliente = idCliente;
         this.nomeRua = nomeRua;
         this.cep = cep;
         this.bairro = bairro;
         this.numero = numero;
         this.complemento = complemento;
+        this.usuario = usuarioDTO;
     }
 }

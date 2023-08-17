@@ -1,16 +1,20 @@
 package com.pizzariaBackEnd.pizzariaBackEnd.DTO;
 
 import com.pizzariaBackEnd.pizzariaBackEnd.Entity.Estado;
+import com.pizzariaBackEnd.pizzariaBackEnd.Entity.Usuario;
 import lombok.Getter;
 import lombok.Setter;
 
 public class PedidoDTO {
 
     @Getter@Setter
-    private Long idCliente;
+    private Usuario idCliente;
 
     @Getter@Setter
-    private Long idFuncionario;
+    private Usuario idFuncionario;
+
+    @Getter@Setter
+    private String nome;
 
     @Getter@Setter
     private boolean delivery;
@@ -21,9 +25,10 @@ public class PedidoDTO {
     @Getter@Setter
     private Estado estado;
 
-    public PedidoDTO(Long idCliente, Long idFuncionario, boolean delivery, String observacao, Estado estado) {
+    public PedidoDTO(Usuario idCliente, Usuario idFuncionario,String nome, boolean delivery, String observacao, Estado estado) {
         this.idCliente = idCliente;
         this.idFuncionario = idFuncionario;
+        this.nome = nome;
         this.delivery = delivery;
         this.observacao = observacao;
         this.estado = estado;
