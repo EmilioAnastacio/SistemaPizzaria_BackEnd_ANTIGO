@@ -71,6 +71,11 @@ public class UsuarioService {
         return  usuarioDTOBanco;
     }
 
+    public UsuarioDTO findById(Long id){
+        Usuario usuarioBanco = this.usuarioRepository.findById(id).orElse(null);
+        Assert.isTrue(usuarioBanco != null, "Usuario Inválido");
+        return toUsuarioDTO(usuarioBanco);
+    }
 
     public Usuario toUsuario(UsuarioDTO usuarioDTO){
         Usuario usuario = new Usuario();

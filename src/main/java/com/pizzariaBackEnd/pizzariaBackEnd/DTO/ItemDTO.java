@@ -16,6 +16,10 @@ public class ItemDTO {
     @Getter@Setter
     private String tamanho;
 
+    public ItemDTO(){
+
+    }
+
     public ItemDTO(Long id, Pedido idPedido, String tamanho) {
         this.id = id;
         this.idPedido = idPedido;

@@ -52,6 +52,14 @@ public class PedidoService {
 
     }
 
+    @Transactional(rollbackFor = Exception.class)
+    public void deletar(final Long id){
+
+        final Pedido pedidoBanco = this.pedidoRepository.findById(id).orElse(null);
+        Assert.isTrue(pedidoBanco != null, "Registro não encontrado");
+        this.pedidoRepository.delete(pedidoBanco);
+    }
+
     public List<PedidoDTO> findAllPedido(){
         List<Pedido> pedidoBanco = pedidoRepository.findAll();
         List<PedidoDTO> pedidoDTOBanco = new ArrayList<>();
@@ -63,16 +71,12 @@ public class PedidoService {
         return pedidoDTOBanco;
     }
 
-    public void deletar(final Long id){
+    public PedidoDTO findById(Long id){
 
-        final Pedido pedidoBanco = this.pedidoRepository.findById(id).orElse(null);
-
-        Assert.isTrue(pedidoBanco != null, "Registro não encontrado");
-
-        this.pedidoRepository.delete(pedidoBanco);
-
+        Pedido pedidoBanco = this.pedidoRepository.findById(id).orElse(null);
+        Assert.isTrue(pedidoBanco != null, "Pedido Inválido");
+        return toPedidoDTO(pedidoBanco);
     }
-
 
     public Pedido toPedido(PedidoDTO pedidoDTO){
         Pedido pedido = new Pedido();

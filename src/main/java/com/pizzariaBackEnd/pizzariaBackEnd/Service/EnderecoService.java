@@ -5,6 +5,7 @@ import com.pizzariaBackEnd.pizzariaBackEnd.Entity.Endereco;
 import com.pizzariaBackEnd.pizzariaBackEnd.Repository.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class EnderecoService {
     @Autowired
     private EnderecoRepository enderecoRepository;
 
+    @Transactional(rollbackFor = Exception.class)
     public void cadastrar(EnderecoDTO enderecoDTO){
 
         Assert.isTrue(enderecoDTO.getNomeRua() == null, "Informe o nome da rua");
@@ -28,6 +30,7 @@ public class EnderecoService {
         this.enderecoRepository.save(toEndereco(enderecoDTO));
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public void editar(Long id, EnderecoDTO enderecoDTO){
         Endereco enderecoBanco = this.enderecoRepository.findById(id).orElse(null);
 
@@ -38,13 +41,18 @@ public class EnderecoService {
         Assert.isTrue(enderecoDTO.getComplemento() == null, "Informe o Complemento");
         Assert.isTrue(enderecoDTO.getUsuario() == null, "Informe o Usuario");
 
-
+        enderecoBanco.setNomeRua(enderecoDTO.getNomeRua());
+        enderecoBanco.setCep(enderecoDTO.getCep());
+        enderecoBanco.setBairro(enderecoDTO.getBairro());
+        enderecoBanco.setComplemento(enderecoDTO.getComplemento());
+        enderecoBanco.setNumero(enderecoDTO.getNumero());
 
         Assert.isTrue(enderecoBanco != null, "Endereco nao foi encontrado");
-        this.enderecoRepository.save(toEndereco(enderecoDTO));
+        this.enderecoRepository.save(enderecoBanco);
 
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public void deletar(Long id){
         Endereco enderecoBanco = this.enderecoRepository.findById(id).orElse(null);
 
@@ -65,7 +73,12 @@ public class EnderecoService {
         return enderecoDTOBanco;
     }
 
+    public EnderecoDTO findById(Long id){
 
+        Endereco enderecoBanco = this.enderecoRepository.findById(id).orElse(null);
+        Assert.isTrue(enderecoBanco != null, "Produto Inválido");
+        return toEnderecoDTO(enderecoBanco);
+    }
 
 
     public EnderecoDTO toEnderecoDTO(Endereco endereco){
