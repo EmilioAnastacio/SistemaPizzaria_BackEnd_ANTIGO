@@ -41,7 +41,12 @@ public class UsuarioService {
         Assert.isTrue(usuarioDTO.getCpf() == null, "Insira um CPF válido");
         Assert.isTrue(usuarioDTO.getEnderecos() == null, "Insira um Endereço");
 
-        this.usuarioRepository.save(toUsuario(usuarioDTO));
+        usuarioBanco.setNome(usuarioDTO.getNome());
+        usuarioBanco.setTelefone(usuarioDTO.getTelefone());
+        usuarioBanco.setCpf(usuarioDTO.getCpf());
+        usuarioBanco.setEnderecos(usuarioDTO.getEnderecos());
+
+        this.usuarioRepository.save(usuarioBanco);
     }
 
     @Transactional(rollbackFor = Exception.class)

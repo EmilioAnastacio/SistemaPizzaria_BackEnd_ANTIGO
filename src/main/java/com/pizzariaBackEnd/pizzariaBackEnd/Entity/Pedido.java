@@ -32,7 +32,7 @@ public class Pedido{
 
     @Getter@Setter
     @Column(name = "delivey", nullable = false)
-    private boolean delivery;//balcao ou delivery
+    private Boolean delivery;//balcao ou delivery
 
     @Getter@Setter
     @Column(name = "observacao", nullable = false)
@@ -41,9 +41,10 @@ public class Pedido{
     public Pedido() {
     }
 
-    public Pedido(Usuario idFuncionario, Usuario idCliente, String estado, boolean delivery, String observacao) {
+    public Pedido(Usuario idFuncionario, Usuario idCliente,String nome, String estado, Boolean delivery, String observacao) {
         this.idFuncionario = idFuncionario;
         this.idCliente = idCliente;
+        this.nome = nome;
         this.estado = estado;
         this.delivery = delivery;
         this.observacao = observacao;

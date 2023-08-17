@@ -1,11 +1,13 @@
 package com.pizzariaBackEnd.pizzariaBackEnd.DTO;
 
 import com.pizzariaBackEnd.pizzariaBackEnd.Entity.Item;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
 
+@Data
 public class SaborDTO {
 
     @Getter@Setter
