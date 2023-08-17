@@ -18,12 +18,25 @@ public class EnderecoService {
 
     public void cadastrar(EnderecoDTO enderecoDTO){
 
+        Assert.isTrue(enderecoDTO.getNomeRua() == null, "Informe o nome da rua");
+        Assert.isTrue(enderecoDTO.getBairro() == null, "informe o bairro");
+        Assert.isTrue(enderecoDTO.getCep() == null, "Informe o Cep");
+        Assert.isTrue(enderecoDTO.getNumero() <= 0, "Informe o numero");
+        Assert.isTrue(enderecoDTO.getComplemento() == null, "Informe o Complemento");
+        Assert.isTrue(enderecoDTO.getUsuario() == null, "Informe o Usuario");
 
         this.enderecoRepository.save(toEndereco(enderecoDTO));
     }
 
     public void editar(Long id, EnderecoDTO enderecoDTO){
         Endereco enderecoBanco = this.enderecoRepository.findById(id).orElse(null);
+
+        Assert.isTrue(enderecoDTO.getNomeRua() == null, "Informe o nome da rua");
+        Assert.isTrue(enderecoDTO.getBairro() == null, "informe o bairro");
+        Assert.isTrue(enderecoDTO.getCep() == null, "Informe o Cep");
+        Assert.isTrue(enderecoDTO.getNumero() <= 0, "Informe o numero");
+        Assert.isTrue(enderecoDTO.getComplemento() == null, "Informe o Complemento");
+        Assert.isTrue(enderecoDTO.getUsuario() == null, "Informe o Usuario");
 
 
 
